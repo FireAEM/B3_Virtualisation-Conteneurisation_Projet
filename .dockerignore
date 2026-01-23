@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# Docker Compose files (pas utiles dans l'image)
+docker-compose.yml
+docker-compose.dev.yml
+docker-compose.prod.yml
+
+# Environnements
+.env
+.env.example
+
+# Dossiers non nécessaires dans l'image
+scripts/
+mysql-init/
+
+# Node / Frontend (si jamais tu ajoutes un frontend plus tard)
+node_modules/
+dist/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# README et docs
+README.md

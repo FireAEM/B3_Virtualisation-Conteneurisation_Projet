@@ -1,0 +1,37 @@
+# Environnements
+.env
+.env.local
+.env.*.local
+
+# Docker
+docker-compose.override.yml
+docker/*.log
+
+# Volumes / données générées
+db_data/
+db_data_prod/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Cache PHP (si on ajoute Composer)
+vendor/
+composer.lock
+
+# Cache Apache/PHP
+*.cache
+
+# Fichiers temporaires
+*.tmp
+*.swp
+*.bak
+
+# Node (si on ajoute un front)
+node_modules/
+dist/
