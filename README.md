@@ -52,9 +52,10 @@ Adapter les variables selon vos besoins (ports, identifiants MySQL…).
 
 3.  **Rendre les scripts exécutables (une seule fois)**
 ```bash
-chmod +x docker/wait-for-it.sh
-chmod +x scripts/init-db.sh scripts/reset.sh
+sudo chmod +x docker/wait-for-it.sh
+sudo chmod +x scripts/init-db.sh scripts/reset.sh
 ```
+S'il y a une erreur de droit sudo, voir cette section [Donner les droits sudo à un utilisateur](#donner-les-droits-sudo-à-un-utilisateur)
 
 4.  **Installer Make**
 ```bash
@@ -70,6 +71,7 @@ ou :
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 ```
+S'il y a une erreur de groupe docker, voir cette section [Ajouter un utilisateur au groupe docker](#ajouter-un-utilisateur-au-groupe-docker)
 
 6.  **Accéder à l’application**
 -   Application : http://localhost:8080
@@ -96,6 +98,7 @@ docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 
 ## Troubleshooting rapide
 
+### Général
 -   Voir l’état des services :
 ```bash
 docker compose ps
@@ -116,6 +119,30 @@ docker compose logs db
 
 -   Si un port est déjà utilisé :  
     Modifier `APP_PORT` ou `PMA_PORT` dans `.env`
+
+### Donner les droits `sudo` à un utilisateur
+Se connecter en temps qu'utilisateur `root`, puis lancer cette commande :
+```bash
+sudo usermod -aG sudo {nom_utilisateur}
+```
+
+### Ajouter un utilisateur au groupe `docker`
+1.  **Ajouter l'utilisateur au groupe docker**
+```bash
+sudo usermod -aG docker $USER
+```
+
+2.  **Recharger les groupes dans la session** (sans déconnexion complète)
+```bash
+newgrp docker
+```
+
+3.  **Vérifier que Docker répond**
+```bash
+docker ps
+```
+
+Si Docker répond correctement, ne pas oublier de relancer la commande initale.
 
 ---
 
