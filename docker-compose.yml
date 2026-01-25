@@ -38,6 +38,12 @@ services:
       - ./docker/wait-for-it.sh:/usr/local/bin/wait-for-it.sh:ro
     command: ["/usr/local/bin/wait-for-it.sh","db:3306","--","apache2-foreground"]
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
     networks:
       - backend
 
